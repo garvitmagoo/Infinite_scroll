@@ -92,7 +92,6 @@ const App = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        {!query && images.length === 0 && <PlaceholderText>Start typing to search...</PlaceholderText>}
       </SearchContainer>
       {debouncedQuery && resultMessage ? <p> {resultMessage}</p> :
         <ImageGrid images={images} setSelectedImage={setSelectedImage} />
