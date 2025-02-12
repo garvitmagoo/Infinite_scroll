@@ -46,9 +46,9 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-  
+
   const debouncedQuery = useDebounce(query, 500);
-  const  {fetchImages, hasMore, isLoading, resultMessage} = useInfiniteScroll(debouncedQuery, page,images, setImages)
+  const { fetchImages, hasMore, isLoading, resultMessage } = useInfiniteScroll(debouncedQuery, page, images, setImages)
 
   useEffect(() => {
     if (!debouncedQuery) {
@@ -64,22 +64,22 @@ const App = () => {
     loadInitialImages();
   }, [debouncedQuery]);
 
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     window.addEventListener('scroll', handleScroll)
 
-    return ()=>removeEventListener('scroll',handleScroll)
+    return () => removeEventListener('scroll', handleScroll)
   }, [isLoading, hasMore])
 
   const handleScroll = () => {
-    if(window.innerHeight + window.scrollY >= document.documentElement.offsetHeight - 200 && hasMore && !isLoading){
+    if (window.innerHeight + window.scrollY >= document.documentElement.offsetHeight - 200 && hasMore && !isLoading) {
       setPage((prev) => prev + 1);
     }
   }
 
-  useEffect( ()=>{
-    if(page === 1 || !query) return;
-     fetchImages(debouncedQuery, page,images, setImages);
+  useEffect(() => {
+    if (page === 1 || !query) return;
+    fetchImages(debouncedQuery, page, images, setImages);
   }, [page])
 
 
@@ -93,11 +93,11 @@ const App = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
         {!query && images.length === 0 && <PlaceholderText>Start typing to search...</PlaceholderText>}
-    </SearchContainer>
-      {debouncedQuery && resultMessage ? <p> {resultMessage}</p>: 
-      <ImageGrid images={images} setSelectedImage={setSelectedImage}/>
-    
-}
+      </SearchContainer>
+      {debouncedQuery && resultMessage ? <p> {resultMessage}</p> :
+        <ImageGrid images={images} setSelectedImage={setSelectedImage} />
+
+      }
       {isLoading && <LoadingSpinner />}
 
       {selectedImage && (

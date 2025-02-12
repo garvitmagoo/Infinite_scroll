@@ -1,1 +1,10 @@
-# semtech_infinite_scroll
+
+
+-> To run it you can just follow the following steps -
+
+1. Clone the repo with : - git clone https://github.com/garvitmagoo/semtech_infinite_scroll.git
+2. Change to project directory with - cd semtech_infinite_scroll
+3. Install Node modules npm i
+4. Run the project with npm start
+
+That's it !
